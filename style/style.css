@@ -8,3 +8,12 @@
 a.navbar-brand{
     margin-left: 16px;
 }
+
+body {
+    background-color: #f8f9fa;
+}
+.login-form {
+    width: 350px;
+    margin: 0 auto;
+    margin-top: 100px;
+}
