@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["password"]) && !empty($_POST["password"] && $_POST["username"] && !empty($_POST["username"]))) {
         // Prepare a statement
         $stmt = $conn->prepare("SELECT user_id, firstname, lastname,adminBool FROM users WHERE password=? AND firstname=?");
-        $stmt->bind_param("s", $password);
+        $stmt->bind_param("ss", $password, $username);
 
         // Set parameters and execute
         $user = $_POST["username"];
