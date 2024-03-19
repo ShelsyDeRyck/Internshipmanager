@@ -23,7 +23,7 @@
                     <button class="nav-link" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses-tab-pane" type="button" role="tab" aria-controls="courses-tab-pane" aria-selected="false">Courses</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                <button class="nav-link" id="teachers-tab" data-bs-toggle="tab" data-bs-target="#teachers-tab-pane" type="button" role="tab" aria-controls="teachers-tab-pane" aria-selected="false">teachers</button>
+                <button class="nav-link" id="teachers-tab" data-bs-toggle="tab" data-bs-target="#teachers-tab-pane" type="button" role="tab" aria-controls="teachers-tab-pane" aria-selected="false">Teachers</button>
                   <!-- add course to teacher  -->
                 </li>
                 <li class="nav-item" role="presentation">
