@@ -1,5 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div class="container">
+    <div class="login-form">
+        <h2 class="text-center">Login</h2>
+        <form action="" method="post">
+            <div class="form-group">
+                <input type="text" name="username" class="form-control" placeholder="Username" required="required">
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" class="form-control" placeholder="Password" required="required">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block">Log in</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
 <?php
-session_start();
+// Enable error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Make sure there's no output before session_start()
+if (!headers_sent()) {
+    session_start();
+}
+
+// Check if the user is already logged in
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+    // If logged in, redirect to welcome page
+    header("location: index.php");
+    exit;
+}
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -28,9 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("location: index.php?error=empty_fields");
         exit;
     }
-} else {
-    // If the form is not submitted, redirect back to login page
-    header("location: index.php");
-    exit;
 }
 ?>
+</body>
+</html>
