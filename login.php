@@ -29,6 +29,20 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+// Database credentials
+$servername = "localhost";
+$username = "root";
+$passw = "root";
+$database = "internship";
+
+// Create connection
+$conn = new mysqli($servername, $username, $passw, $database);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
 // Make sure there's no output before session_start()
 if (!headers_sent()) {
     session_start();
@@ -43,17 +57,27 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Check if username and password are set and not empty
-    if (isset($_POST["username"]) && isset($_POST["password"]) && !empty($_POST["username"]) && !empty($_POST["password"])) {
-        // Dummy credentials for demonstration
-        $dummy_username = "user";
-        $dummy_password = "password";
+    // Check if password is set and not empty
+    if (isset($_POST["password"]) && !empty($_POST["password"] && $_POST["username"] && !empty($_POST["username"]))) {
+        // Prepare a statement
+        $stmt = $conn->prepare("SELECT user_id, firstname, lastname,adminBool FROM users WHERE password=? AND firstname=?");
+        $stmt->bind_param("s", $password);
 
-        // Check if the entered credentials match the dummy credentials
-        if ($_POST["username"] === $dummy_username && $_POST["password"] === $dummy_password) {
-            // Authentication successful, set session variables
+        // Set parameters and execute
+        $user = $_POST["username"];
+        $password = $_POST["password"];
+        $stmt->execute();
+        $stmt->store_result();
+
+        // Check if user exists
+        if ($stmt->num_rows == 1) {
+            // Authentication successful, fetch the username
+            $stmt->bind_result($user_id, explode("_", $username)[0], explode("_", $username)[1]);
+            $stmt->fetch();
+
+            // Set session variables
             $_SESSION["loggedin"] = true;
-            $_SESSION["username"] = $dummy_username;
+            $_SESSION["username"] = $username;
 
             // Redirect to welcome page
             header("location: welcome.php");
@@ -64,11 +88,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit;
         }
     } else {
-        // Username or password is empty, redirect back to login page with error message
-        header("location: index.php?error=empty_fields");
+        // Password is empty, redirect back to login page with error message
+        header("location: index.php?error=empty_password");
         exit;
     }
 }
+$conn->close();
 ?>
 </body>
 </html>
