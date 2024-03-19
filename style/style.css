@@ -1,0 +1,10 @@
+@media (min-width: 576px)
+{
+    .col-sm
+    {
+        flex: .2;
+    }
+}
+a.navbar-brand{
+    margin-left: 16px;
+}
