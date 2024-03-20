@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if password is set and not empty
     if (isset($_POST["password"]) && !empty($_POST["password"] && $_POST["username"] && !empty($_POST["username"]))) {
         // Prepare a statement
-        $stmt = $conn->prepare("SELECT user_id, firstname, lastname,adminBool FROM users WHERE password=? AND firstname=?");
+        $stmt = $conn->prepare("SELECT user_id, CONCAT(firstname, '_', lastname) AS username,adminBool FROM users WHERE password=? AND CONCAT(firstname, '_', lastname) =?");
         $stmt->bind_param("ss", $password, $username);
 
         // Set parameters and execute
@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 }
-$conn->close();
+// $conn->close();
 ?>
 </body>
 </html>

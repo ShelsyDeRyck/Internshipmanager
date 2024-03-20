@@ -7,19 +7,11 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-DROP TABLE IF EXISTS `admin`;
-CREATE TABLE `admin` (
-  `admin_id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  PRIMARY KEY (`admin_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-DROP TABLE IF EXISTS `course_teacher`;
-CREATE TABLE `course_teacher` (
+DROP TABLE IF EXISTS `course_user`;
+CREATE TABLE `course_user` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `courses_id` int(11) DEFAULT NULL,
-  `teachers_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `course_id` int(11) DEFAULT NULL,
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -30,11 +22,19 @@ CREATE TABLE `courses` (
   PRIMARY KEY (`course_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `grade_student`;
+CREATE TABLE `grade_student` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `student_id` int(11) DEFAULT NULL,
+  `grade_id` int(11) DEFAULT NULL,
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS `grades`;
 CREATE TABLE `grades` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `courses_teacher_id` int(11) DEFAULT NULL,
-  `grade` int(11) DEFAULT NULL,
+  `course_user_id` int(11) NOT NULL,
+  `grade` int(11) NOT NULL,
   `softskills_id` int(11) DEFAULT NULL,
   `hardskills_id` int(11) DEFAULT NULL,
   UNIQUE KEY `id` (`id`)
@@ -66,18 +66,19 @@ CREATE TABLE `students` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` int(11) DEFAULT NULL,
   `firstname` int(11) DEFAULT NULL,
-  `course_teacher_id` bigint(20) DEFAULT NULL,
+  `course_user_id` bigint(20) DEFAULT NULL,
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `teachers`;
-CREATE TABLE `teachers` (
-  `teacher_id` int(11) NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(50) NOT NULL,
   `lastname` varchar(50) NOT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`teacher_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `password` varchar(50) DEFAULT NULL,
+  `adminBool` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 
 
@@ -95,6 +96,8 @@ CREATE TABLE `teachers` (
 
 
 
+INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `password`, `adminBool`) VALUES
+(1, 'shelsy', 'h', 'hello', 1);
 
 
 
