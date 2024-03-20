@@ -1,3 +1,4 @@
+<?php include 'global.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +19,7 @@
             <div class="form-group mb-2">
                 <input type="password" name="password" class="form-control" placeholder="Password" required="required">
             </div>
-            <div class="form-group">
+            <div class="form-group text-center">
                 <button type="submit" class="btn btn-danger btn-block">Log in</button>
             </div>
         </form>
@@ -31,24 +32,8 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Database credentials
-$servername = "localhost";
-$username = "root";
-$passw = "root";
-$database = "internship";
-
-// Create connection
-$conn = new mysqli($servername, $username, $passw, $database);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
 // Make sure there's no output before session_start()
-if (!headers_sent()) {
-    session_start();
-}
+session_start();
 
 // Check if the user is already logged in
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
