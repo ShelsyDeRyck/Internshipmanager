@@ -8,116 +8,90 @@
     <link rel="stylesheet" href="style/style.css">
 </head>
 
-<?php
-// Dummy data for courses
-$courses = [
-    ['id' => 1, 'name' => 'Math'],
-    ['id' => 2, 'name' => 'Science'],
-    ['id' => 3, 'name' => 'History']
-];
-
-// Dummy data for students
-$students = [
-    ['id' => 1, 'name' => 'John Doe', 'course_id' => 1],
-    ['id' => 2, 'name' => 'Jane Smith', 'course_id' => 1],
-    ['id' => 3, 'name' => 'Michael Johnson', 'course_id' => 2],
-    ['id' => 4, 'name' => 'Emily Brown', 'course_id' => 2],
-    ['id' => 5, 'name' => 'David Wilson', 'course_id' => 3]
-];
-
-// Dummy data for teachers
-$teachers = [
-    ['id' => 1, 'name' => 'John Smith', 'email' => 'john@example.com', 'login' => 'john', 'password' => 'password1', 'address' => '123 Main St', 'phone' => '555-1234'],
-    ['id' => 2, 'name' => 'Jane Doe', 'email' => 'jane@example.com', 'login' => 'jane', 'password' => 'password2', 'address' => '456 Elm St', 'phone' => '555-5678'],
-    ['id' => 3, 'name' => 'Michael Johnson', 'email' => 'michael@example.com', 'login' => 'michael', 'password' => 'password3', 'address' => '789 Oak St', 'phone' => '555-9101']
-];
-
-// Dummy data for teacher-course relationships
-$teacher_courses = [
-    ['teacher_id' => 1, 'course_id' => 1],
-    ['teacher_id' => 1, 'course_id' => 2],
-    ['teacher_id' => 2, 'course_id' => 3],
-    ['teacher_id' => 3, 'course_id' => 1],
-    ['teacher_id' => 3, 'course_id' => 3]
-];
-?>
-
 
 <body>
     <div class="container-fluid mt-5">
         <div class="row">
-            <div class="col-sm">
-            <a class="navbar-brand h1" href="#">Admin pannel</a>
-            <hr color="grey">
-            </div>
             <div class="col-md">
-            <ul class="nav nav-tabs justify-content-end" id="myTab" role="tablist">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login-tab-pane" type="button" role="tab" aria-controls="login-tab-pane" aria-selected="true">Login</button>
+                    <button class="nav-link active" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses-tab-pane" type="button" role="tab" aria-controls="courses-tab-pane" aria-selected="false">Courses</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses-tab-pane" type="button" role="tab" aria-controls="courses-tab-pane" aria-selected="false">Courses</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                <button class="nav-link" id="teachers-tab" data-bs-toggle="tab" data-bs-target="#teachers-tab-pane" type="button" role="tab" aria-controls="teachers-tab-pane" aria-selected="false">Teachers</button>
+                <button class="nav-link" id="teachers-tab" onclick='resetPass()' data-bs-toggle="tab" data-bs-target="#teachers-tab-pane" type="button" role="tab" aria-controls="teachers-tab-pane" aria-selected="false">Teachers</button>
                   <!-- add course to teacher  -->
                 </li>
                 <li class="nav-item" role="presentation">
-                <button class="nav-link" id="students-tab" data-bs-toggle="tab" data-bs-target="#students-tab-pane" type="button" role="tab" aria-controls="students-tab-pane" aria-selected="false">Students</button>
+                <button class="nav-link" id="softskills-tab" data-bs-toggle="tab" data-bs-target="#softskills-tab-pane" type="button" role="tab" aria-controls="softskills-tab-pane" aria-selected="false">Softskills</button>
                     <!-- <textarea name="" id="" cols="3" rows="5"></textarea> -->
                 </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                </li> -->
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="hardskills-tab" data-bs-toggle="tab" data-bs-target="#hardskills-tab-pane" type="button" role="tab" aria-controls="hardskills-tab-pane" aria-selected="true">Hardskills</button>
+                </li>
             </ul>
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="login-tab-pane" role="tabpanel" aria-labelledby="login-tab" tabindex="0">
-                    <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime animi nihil ea, at ad fuga soluta culpa accusantium voluptatibus necessitatibus quas doloremque consequuntur suscipit a iste accusamus. A, officiis quod?</h2>
-                </div>
-                <div class="tab-pane fade" id="courses-tab-pane" role="tabpanel" aria-labelledby="courses-tab" tabindex="0">
-    <?php foreach ($courses as $course): ?>
-        <h3><?php echo $course['name']; ?></h3>
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton_<?php echo $course['id']; ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Students
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton_<?php echo $course['id']; ?>">
-                <?php foreach ($students as $student): ?>
-                    <?php if ($student['course_id'] == $course['id']): ?>
-                        <a class="dropdown-item" href="#"><?php echo $student['name']; ?></a>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-            </div>
-        </div>
-    <?php endforeach; ?>
-</div>
+                <div class="tab-pane fade show active" id="courses-tab-pane" role="tabpanel" aria-labelledby="courses-tab" tabindex="0">
+                    <!-- <form class="mb-3 mt-2 " id="courseForm" method="post" target="_blank">
+                        <div class="mb-3 mt-2 ">
+                            <label for="courseInput" class="form-label">Add course</label>
+                            <input type="text" class="form-control" id="courseInput" placeholder="coursename">
+                        </div>
+                        <div class="mb-3">
+                            <label for="courseDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="courseDescription" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-danger">Submit</button>
+                    </form> -->
 
-<div class="tab-pane fade" id="teachers-tab-pane" role="tabpanel" aria-labelledby="teachers-tab" tabindex="0">
-    <?php foreach ($teachers as $teacher): ?>
-        <h3><?php echo $teacher['name']; ?></h3>
-        <p>Email: <?php echo $teacher['email']; ?></p>
-        <p>Login: <?php echo $teacher['login']; ?></p>
-        <p>Password: <?php echo $teacher['password']; ?></p>
-        <p>Address: <?php echo $teacher['address']; ?></p>
-        <p>Phone: <?php echo $teacher['phone']; ?></p>
-        <p>Courses Taught:</p>
-        <ul>
-            <?php foreach ($teacher_courses as $relation): ?>
-                <?php if ($relation['teacher_id'] == $teacher['id']): ?>
-                    <?php foreach ($courses as $course): ?>
-                        <?php if ($course['id'] == $relation['course_id']): ?>
-                            <li><?php echo $course['name']; ?></li>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            <?php endforeach; ?>
-        </ul>
-    <?php endforeach; ?>
-</div>
-                <div class="tab-pane fade" id="students-tab-pane" role="tabpanel" aria-labelledby="students-tab" tabindex="0">
+                    <form class="mb-4 mt-2 p-4 shadow-sm rounded" id="courseForm" method="post" target="_blank" style="background-color: #ffffff; color: #ff0000;">
+                        <div class="mb-3">
+                            <label for="courseInput" class="form-label fs-5">Course Name</label>
+                            <input type="text" class="form-control" id="courseInput" placeholder="Enter course name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="courseDescription" class="form-label fs-5">Description</label>
+                            <textarea class="form-control" id="courseDescription" rows="3" placeholder="Enter course description"></textarea>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-danger btn-lg">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="teachers-tab-pane" role="tabpanel" aria-labelledby="teachers-tab" tabindex="0">
+                    <form class="mb-4 mt-2 p-4 shadow-sm rounded" id="teacherForm" method="post" target="_blank" style="background-color: #ffffff; color: #ff0000;">
+                        <div class="mb-3">
+                            <label for="teacherFirstName" class="form-label fs-5">First name</label>
+                            <input type="text" class="form-control" id="teacherFirstName" placeholder="first name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="teacherLastName" class="form-label fs-5">Last name</label>
+                            <input type="text" class="form-control" id="teacherLastName" placeholder="last name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="teacherPass" class="form-label fs-5">Password</label>
+                            <input class="form-control" type="text" id="teacherPass" aria-label="Disabled input example" disabled readonly>
+                        </div>
+                        <div class="mb-3 form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="switchAdmin">
+                            <label class="form-check-label" for="switchAdmin">Admin rights</label>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-danger btn-lg" onclick="resetPass()">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="softskills-tab-pane" role="tabpanel" aria-labelledby="sofftskills-tab" tabindex="0">
                     <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h5>
                 </div>
+                <div class="tab-pane fade" id="hardskills-tab-pane" role="tabpanel" aria-labelledby="hardskills-tab" tabindex="0">
+                    <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime animi nihil ea, at ad fuga soluta culpa accusantium voluptatibus necessitatibus quas doloremque consequuntur suscipit a iste accusamus. A, officiis quod?</h2>
+                </div>
             </div>
+
+            </div>
+            <div class="col-sm adminpannelTitle" >
+            <a class="navbar-brand h1" href="#">Admin pannel</a>
+            <hr color="#dee2e6">
             </div>
         </div>
     </div>

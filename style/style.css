@@ -1,8 +1,15 @@
-@media (min-width: 576px)
+@media screen and (min-width: 576px)
 {
-    .col-sm
+    .adminpannelTitle
     {
         flex: .2;
+    }
+
+}
+
+@media screen and (max-width: 770px) {
+    .adminpannelTitle {
+        display: none !important;
     }
 }
 a.navbar-brand{
@@ -34,5 +41,18 @@ button.nav-link.active {
 
 button.btn.btn-danger
 {
-    background-color: red;
+    color: white !important;
+    background-color: red !important;
 }
+
+input{
+    border: red solid 1px;
+}
+textarea{
+    border: red solid 1px;
+}
+
+form#courseForm {
+    max-width: 700px !important;
+}
+
