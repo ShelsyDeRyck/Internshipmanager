@@ -62,13 +62,15 @@ CREATE TABLE `softskills` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `students`;
+
 CREATE TABLE `students` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `name` int(11) DEFAULT NULL,
-  `firstname` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,  
+  `firstname` int(11) DEFAULT NULL, 
   `course_user_id` bigint(20) DEFAULT NULL,
-  UNIQUE KEY `id` (`id`)
+  PRIMARY KEY (`id`)  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (

@@ -36,3 +36,36 @@ button.btn.btn-danger
 {
     background-color: red;
 }
+
+
+.dropdown-menu {
+    background-color: #fff; /* Set background color */
+    border-color: #ddd; /* Set border color */
+    color: #333; /* Set text color */
+  }
+  
+  .dropdown-item:hover { /* Style on hover */
+    background-color: #f1f1f1; /* Set hover background color */
+  }
+  
+  .dropdown-menu {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    border: 1px solid #ddd; /* Add thin border */
+  }
+  .dropdown-item {
+    padding: 10px 15px; /* Adjust padding */
+    font-size: 14px; /* Set font size */
+  }
+  
+  .dropdown-toggle::after {
+    content: ""; /* Add empty content */
+    display: inline-block;
+    width: 0px;
+    height: 0px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 8px solid #333; /* Set arrow color */
+    vertical-align: middle;
+    margin-left: 5px; /* Adjust arrow position */
+  }
+  
