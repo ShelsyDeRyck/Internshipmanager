@@ -123,8 +123,9 @@ $teacher_courses = [
 <?php endforeach; ?>
 
 </div>
-                <<div class="tab-pane fade" id="students-tab-pane" role="tabpanel" aria-labelledby="students-tab" tabindex="0">
-  <a href="add_student.php" class="btn btn-primary mb-3">Add Student</a>  <?php foreach ($students as $student): ?>
+<div class="tab-pane fade" id="students-tab-pane" role="tabpanel" aria-labelledby="students-tab" tabindex="0">
+  <a href="add_student.php" class="btn btn-primary mb-3">Add Student</a>
+  <a href="edit_students.php" class="btn btn-secondary mb-3">Edit Students</a>  <?php foreach ($students as $student): ?>
     <h3><?php echo $student['name']; ?></h3>
 
     <div class="dropdown">
@@ -186,6 +187,7 @@ $teacher_courses = [
 
   <?php endforeach; ?>
 </div>
+
 
 
                 </div>
