@@ -17,7 +17,7 @@ CREATE TABLE `course_user` (
 
 DROP TABLE IF EXISTS `courses`;
 CREATE TABLE `courses` (
-  `course_id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `course_name` varchar(100) NOT NULL,
   PRIMARY KEY (`course_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -42,21 +42,21 @@ CREATE TABLE `grades` (
 
 DROP TABLE IF EXISTS `hardskills`;
 CREATE TABLE `hardskills` (
-  `hardskill_id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `hardskill_name` varchar(100) NOT NULL,
   PRIMARY KEY (`hardskill_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `internships`;
 CREATE TABLE `internships` (
-  `internship_id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   PRIMARY KEY (`internship_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `softskills`;
 CREATE TABLE `softskills` (
-  `softskill_id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `softskill_name` varchar(100) NOT NULL,
   PRIMARY KEY (`softskill_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -74,7 +74,7 @@ CREATE TABLE `students` (
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(50) NOT NULL,
   `lastname` varchar(50) NOT NULL,
   `password` varchar(50) DEFAULT NULL,
@@ -98,7 +98,7 @@ CREATE TABLE `users` (
 
 
 
-INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `password`, `adminBool`) VALUES
+INSERT INTO `users` (`id`, `firstname`, `lastname`, `password`, `adminBool`) VALUES
 (1, 'shelsy', 'h', 'hello', 1);
 
 
