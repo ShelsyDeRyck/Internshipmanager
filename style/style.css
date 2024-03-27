@@ -44,6 +44,7 @@ button.btn.btn-danger
     color: white !important;
     background-color: red !important;
 }
+<<<<<<< HEAD
 
 input{
     border: red solid 1px;
@@ -56,3 +57,5 @@ form#courseForm {
     max-width: 700px !important;
 }
 
+=======
+>>>>>>> parent of f29029a (added more to the admin tabs)
