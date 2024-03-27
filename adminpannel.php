@@ -94,6 +94,8 @@ $teacher_courses = [
 
 <div class="tab-pane fade" id="teachers-tab-pane" role="tabpanel" aria-labelledby="teachers-tab" tabindex="0">
 <?php foreach ($teachers as $teacher): ?>
+  <a href="add_teacher.php" class="btn btn-primary">Add Teacher</a>
+
   <h3><?php echo $teacher['name']; ?></h3>
 
   <div class="dropdown">
